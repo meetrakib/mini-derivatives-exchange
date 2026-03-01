@@ -1,0 +1,39 @@
+# Dev only: hot reload via volume mounts.
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mini-derivatives-exchange
+    ports:
+      - "8002:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-mini_exchange}:${POSTGRES_PASSWORD:-mini_exchange_dev}@postgres:5432/${POSTGRES_DB:-mini_exchange}
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: mini-exchange-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-mini_exchange}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mini_exchange_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-mini_exchange}
+    ports:
+      - "5434:5432"
+    volumes:
+      - mini_exchange_postgres_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-mini_exchange} -d ${POSTGRES_DB:-mini_exchange}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mini_exchange_postgres_dev:
