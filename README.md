@@ -2,7 +2,7 @@
 
 **Paper/simulated derivatives exchange**: order book, limit & market orders, matching engine, positions and PnL. Uses **real market data** from Binance (no API key) for last price and OHLCV. Optional: emit trade events to a gamification backend (e.g. [gamification-core](https://github.com/meetrakib/gamification-core) or quest-saas-api) for quests and leaderboards.
 
-Part of the [Gamification](https://github.com/meetrakib/gamification-core) & [Mini Exchange]([https://github.com](https://github.com/meetrakib/mini-derivatives-exchange)) ecosystem. A demo frontend is available in [mini-exchange-ui]([https://github.com](https://github.com/meetrakib/mini-exchange-ui)).
+Part of the [Gamification](https://github.com/meetrakib/gamification-core) & [Mini Exchange](https://github.com/meetrakib/mini-derivatives-exchange) ecosystem. A demo frontend is available in [mini-exchange-ui](https://github.com/meetrakib/mini-exchange-ui).
 
 ---
 
