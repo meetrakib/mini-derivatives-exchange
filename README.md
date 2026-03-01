@@ -38,8 +38,8 @@ Part of the [Gamification](https://github.com/meetrakib/gamification-core) & [Mi
 
 ```
 ┌─────────────────┐     Orders / Book / Positions      ┌──────────────────────┐
-│  mini-exchange  │ ◄─────────────────────────────────►│  PostgreSQL           │
-│  UI (Next.js)   │     JWT (Bearer)                    │  (orders, positions,  │
+│  mini-exchange  │ ◄─────────────────────────────────►│  PostgreSQL          │
+│  UI (Next.js)   │     JWT (Bearer)                   │  (orders, positions, │
 └────────┬────────┘                                    │   users)             │
          │                                             └──────────────────────┘
          │                                                          ▲
@@ -49,10 +49,10 @@ Part of the [Gamification](https://github.com/meetrakib/gamification-core) & [Mi
          │                                             └────────────┬────────────┘
          │                                                          │
          │                        ┌─────────────────────────────────┤
-         │                        │  market_data (Binance)           │  On fill:
+         │                        │  market_data (Binance)          │  On fill:
          │                        │  orders → matching → positions  │  POST /events
-         │                        │  integration (optional)         │  (gamification)
-         │                        └─────────────────────────────────┘
+         └─────────────────────── │  integration (optional)         │  (gamification)
+                                  └─────────────────────────────────┘
 ```
 
 **Modular monolith** (single deployable):
